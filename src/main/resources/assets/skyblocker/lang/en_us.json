@@ -891,6 +891,7 @@
 
   "skyblocker.config.uiAndVisuals.bars": "Health, Mana, Defense, Speed & XP Bars",
   "skyblocker.config.uiAndVisuals.bars.enableBars": "Enable Bars",
+  "skyblocker.config.uiAndVisuals.bars.enableVanillaManaBar": "Enable Vanilla Mana Bar",
   "skyblocker.config.uiAndVisuals.bars.intelligenceDisplay": "Intelligence Display",
   "skyblocker.config.uiAndVisuals.bars.intelligenceDisplay.ORIGINAL": "Original",
   "skyblocker.config.uiAndVisuals.bars.intelligenceDisplay.ACCURATE": "Accurate",

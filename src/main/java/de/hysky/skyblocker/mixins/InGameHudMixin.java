@@ -54,6 +54,9 @@ public abstract class InGameHudMixin {
     @Final
     private MinecraftClient client;
 
+	@Shadow
+	private int ticks;
+
 	@Inject(method = "renderHotbar", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/InGameHud;renderHotbarItem(Lnet/minecraft/client/gui/DrawContext;IILnet/minecraft/client/render/RenderTickCounter;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/item/ItemStack;I)V", ordinal = 0))
     public void skyblocker$renderHotbarItemLockOrBackground(CallbackInfo ci, @Local(argsOnly = true) DrawContext context, @Local(ordinal = 4, name = "m") int index, @Local(ordinal = 5, name = "n") int x, @Local(ordinal = 6, name = "o") int y, @Local PlayerEntity player) {
         if (Utils.isOnSkyblock()) {
@@ -135,6 +138,6 @@ public abstract class InGameHudMixin {
 
 	@Inject(method = "renderFood", at = @At("HEAD"), cancellable = true)
 	private void skyblocker$renderManaOverFood(DrawContext context, PlayerEntity player, int top, int right, CallbackInfo ci) {
-		if (vanillaManaBar.render(context, top, right)) ci.cancel();
+		if (Utils.isOnSkyblock() && vanillaManaBar.render(context, top, right, ticks)) ci.cancel();
 	}
 }

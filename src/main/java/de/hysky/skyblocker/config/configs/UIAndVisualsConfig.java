@@ -284,6 +284,9 @@ public class UIAndVisualsConfig {
         public boolean enableBars = true;
 
 		@SerialEntry
+		public boolean enableVanillaManaBar = true;
+
+		@SerialEntry
 		public IntelligenceDisplay intelligenceDisplay = IntelligenceDisplay.ORIGINAL;
 
         // Kept in for backwards compatibility, remove if needed
