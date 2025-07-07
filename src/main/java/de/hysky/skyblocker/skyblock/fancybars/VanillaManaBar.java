@@ -6,12 +6,8 @@ import de.hysky.skyblocker.skyblock.StatusBarTracker;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.Identifier;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class VanillaManaBar {
-	private static final Logger LOGGER = LoggerFactory.getLogger(VanillaManaBar.class);
-
 	private int lastManaValue;
 	private int manaEndBlinkTick;
 
