@@ -72,6 +72,13 @@ public class StatusBarTracker {
 
 	private static Text onOverlayMessage(Text text, boolean overlay) {
 		if (!overlay || !Utils.isOnSkyblock() || !SkyblockerConfigManager.get().uiAndVisuals.bars.enableBars || Utils.isInTheRift()) {
+			Matcher matcher = STATUS_HEALTH.matcher(text.getString());
+			var sb = new StringBuilder();
+			if (matcher.usePattern(MANA_STATUS).find()) {
+				updateMana(matcher);
+				if (FancyStatusBars.isBarEnabled(StatusBarType.INTELLIGENCE)) matcher.appendReplacement(sb, "");
+				else matcher.appendReplacement(sb, "$0");
+			}
 			return text;
 		}
 		return Text.of(update(text.getString(), SkyblockerConfigManager.get().chat.hideMana));

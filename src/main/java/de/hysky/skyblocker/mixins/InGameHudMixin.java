@@ -5,6 +5,7 @@ import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import com.llamalad7.mixinextras.sugar.Local;
 import de.hysky.skyblocker.config.SkyblockerConfigManager;
 import de.hysky.skyblocker.skyblock.fancybars.FancyStatusBars;
+import de.hysky.skyblocker.skyblock.fancybars.VanillaManaBar;
 import de.hysky.skyblocker.skyblock.item.HotbarSlotLock;
 import de.hysky.skyblocker.skyblock.item.ItemCooldowns;
 import de.hysky.skyblocker.skyblock.item.ItemProtection;
@@ -46,6 +47,8 @@ public abstract class InGameHudMixin {
 
     @Unique
     private final FancyStatusBars statusBars = new FancyStatusBars();
+	@Unique
+	final VanillaManaBar vanillaManaBar = new VanillaManaBar();
 
     @Shadow
     @Final
@@ -128,5 +131,10 @@ public abstract class InGameHudMixin {
 	@WrapWithCondition(method = "renderPlayerList", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/PlayerListHud;render(Lnet/minecraft/client/gui/DrawContext;ILnet/minecraft/scoreboard/Scoreboard;Lnet/minecraft/scoreboard/ScoreboardObjective;)V"))
 	private boolean skyblocker$shouldRenderHud(PlayerListHud playerListHud, DrawContext context, int scaledWindowWidth, Scoreboard scoreboard, ScoreboardObjective objective) {
 		return !Utils.isOnSkyblock() || !SkyblockerConfigManager.get().uiAndVisuals.tabHud.tabHudEnabled || TabHud.shouldRenderVanilla() || MinecraftClient.getInstance().currentScreen instanceof WidgetsConfigurationScreen;
+	}
+
+	@Inject(method = "renderFood", at = @At("HEAD"), cancellable = true)
+	private void skyblocker$renderManaOverFood(DrawContext context, PlayerEntity player, int top, int right, CallbackInfo ci) {
+		if (vanillaManaBar.render(context, top, right)) ci.cancel();
 	}
 }
