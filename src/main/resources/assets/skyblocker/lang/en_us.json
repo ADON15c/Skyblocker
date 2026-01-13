@@ -1846,5 +1846,7 @@
   "text.skyblocker.source": "Source",
   "text.skyblocker.translate": "Translate",
   "text.skyblocker.undo": "Undo",
-  "text.skyblocker.website": "Website"
+  "text.skyblocker.website": "Website",
+  "skyblocker.config.general.speedPresets.config.yaw": "Yaw",
+  "skyblocker.config.general.speedPresets.config.pitch": "Pitch"
 }

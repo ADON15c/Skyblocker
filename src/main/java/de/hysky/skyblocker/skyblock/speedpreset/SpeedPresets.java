@@ -109,4 +109,11 @@ public class SpeedPresets {
 		map.put("cactus", 464);
 		return map;
 	}
+
+	public class CropPreset {
+		public String name;
+		public int speed;
+		public float pitch;
+		public float yaw;
+	}
 }
